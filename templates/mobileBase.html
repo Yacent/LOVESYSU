@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>LOVESYSU</title>
+    <meta name="Description" content="中山大学课程查询网" />
+    <meta name="Keywords" content="SYSU Course COURSE" />
+    <meta name="author" content="YujieLee Yacent" />
+
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" type="text/css" href="{{ static_url("dist/css/mobile.css")}}">
+
+
+</head>
+<body>
+    
+    <div class="header">
+        {% if page != 'index' %}
+	    {% if page == 'result' %}
+		<a href="javascript:window.location='/'" data-kwd="{{kwd}}"><i class="demo-icon icon-left-open-big"></i>返回</a>
+	    {% else %}
+            	<a class="goback" href="#" data-kwd="{{kwd}}"><i class="demo-icon icon-left-open-big"></i>返回</a>
+	    {% end %}
+        {% end %}
+            <h2>COURSE</h2>
+        {% if page == 'index' or page == 'result' %}
+            <a href="/add/course" class="add-course">添加</a>
+        {% end %}
+    </div>
+
+
+    <div class="content">
+        <div class="blank">
+        </div>
+        {% block body %}
+        {% end %}
+    </div>
+
+    <div class="popup">
+        <div class="sub">
+            <i class="demo-icon icon-cancel change-color-icon"></i>
+        </div>
+        <span class="score-comment">
+            <i class="demo-icon icon-star-empty"></i>
+            <i class="demo-icon icon-star-empty"></i>
+            <i class="demo-icon icon-star-empty"></i>
+            <i class="demo-icon icon-star-empty"></i>
+            <i class="demo-icon icon-star-empty"></i>
+        </span>
+    </div>
+
+    <div class="ui-dialog double-btn">
+        <div class="ui-dialog-cnt">
+            <div class="ui-dialog-bd">
+                <div>
+                    <h4 class="tips-title">还没有填写课程名?</h4>
+                    <div class="tips-content">请填写课程名</div>
+                </div>
+            </div>
+            <div class="ui-dialog-ft ui-btn-group">
+                <button type="button" data-role="button" class="select js-force" id="dialogButton0">确认</button>
+                <button type="button" data-role="button" id="dialogButton1">取消</button>
+            </div>
+        </div>
+    </div>
+
+<div class="ui-dialog single-btn">
+    <div class="ui-dialog-cnt">
+        <div class="ui-dialog-bd">
+            <div>
+                <h4 class="tips-title">标题</h4>
+                <div class="tips-content">内容</div></div>
+            </div>
+            <div class="ui-dialog-ft ui-btn-group">
+                <button type="button" data-role="button" class="select" id="dialogButton2">关闭</button>
+            </div>
+        </div><br></div>
+
+    <div class="footer">
+        <h2>&copy; YujieLee &amp; YuxinLin</h2>
+    </div>
+    
+    <script src="{{ static_url("dist/js/mobile.js")}}"></script>
+
+</body>
+</html>

@@ -1,0 +1,93 @@
+{% extends "mobileBase.html" %}
+
+{% block body %}
+<form action="" id="submit" class="js-add-course-form">
+    {% raw xsrf_form_html() %}
+    <div class="ui-form-item ui-border-b">
+        <label for="#">
+            课程名称
+        </label>
+        <input type="text" placeholder="必填" name="title" id="title" required autocomplete="off">
+        <a href="#" class="ui-icon-close">
+        </a>
+
+        <div class="suggest-panel title-panel">
+            <ul class="title-suggest">
+            </ul>
+            <div class="close-panel-btn">
+                <button type="button" class="close-suggest">关闭</button>
+            </div>
+        </div>
+    </div>
+    
+
+    <div class="ui-form-item ui-border-b">
+        <label for="#">
+            教师
+        </label>
+        <input type="text" placeholder="如不清楚，不填" name="teacher1" id="teacher1" autocomplete="off">
+        <a href="#" class="ui-icon-close">
+        </a>
+
+        <div class="suggest-panel teacher-panel">
+            <ul class="teacher-suggest">
+            </ul>
+            <div class="close-panel-btn">
+                <button type="button" class="close-suggest">关闭</button>
+            </div>
+        </div>
+
+    </div>
+    <div class="ui-form-item ui-border-b">
+        <label for="#">
+            类别
+        </label>
+        <select class="category" name="category" id="category" required>
+            <option value="1">公选</option>
+            <option value="2">专选</option>
+            <option value="3">公必</option>
+            <option value="4">专必</option>
+            <option value="5">体育</option>
+        </select>
+    </div>
+    <div class="ui-form-item ui-border-b">
+        <label for="#">
+            评分
+        </label>
+        <input type="hidden" placeholder="评分" id="score">
+        <div class="star">
+            <div class="jump-to-score"></div>
+            <span class="score-comment score-add-course">
+                <i class="demo-icon icon-star-empty"></i>
+                <i class="demo-icon icon-star-empty"></i>
+                <i class="demo-icon icon-star-empty"></i>
+                <i class="demo-icon icon-star-empty"></i>
+                <i class="demo-icon icon-star-empty"></i>
+            </span>
+        </div>
+    </div>
+    <div class="ui-form-item ui-border-b">
+        <label for="#">
+            你的名字
+        </label>
+        <input type="text" placeholder="如需匿名，不填"  name="author1" id="author1">
+        <a href="#" class="ui-icon-close">
+        </a>
+    </div>
+    <div class="ui-form-item ui-border-b add-height">
+        <label for="#">
+            评论
+        </label>
+        <textarea rows="6" placeholder="必填" name="comment" id="comment"required></textarea>
+        <a href="#" class="ui-icon-close">
+        </a>
+    </div>
+
+    <div class="ui-btn-wrap">
+        <button class="ui-btn-lg ui-btn-primary" type="submit">
+            <span class="confirm">确定</span>
+            <img src="{{ static_url("dist/image/loading.gif")}}" class="loading hide">
+        </button>
+    </div>
+</form>
+{% end %}

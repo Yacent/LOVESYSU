@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{%block body%}
+    <div class="index-wrapper">
+    	<div class="index-title">
+    		<p>超过 200 门课程尽在 LoveSYSU.com</p>
+    	</div>
+
+    	<div>
+    		{% module Search() %}
+    	</div>
+    </div>
+{%end%}

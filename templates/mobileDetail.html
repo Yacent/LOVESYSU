@@ -1,0 +1,81 @@
+{% extends "mobileBase.html" %}
+
+{% block body %}
+<div class="course-detail">
+    <div class="rows">
+        <h2>{{ course.name }}</h2>
+    </div>
+    <div class="rows">
+        <p>
+            <span class="course-star" data-rate="{{ course.get_rating() }}">
+                <i class="demo-icon icon-star-empty"></i>
+                <i class="demo-icon icon-star-empty"></i>
+                <i class="demo-icon icon-star-empty"></i>
+                <i class="demo-icon icon-star-empty"></i>
+                <i class="demo-icon icon-star-empty"></i>
+            </span>
+            <input type="hidden" id="score0">
+        </p>
+    </div>
+    <div class="rows rows-detail">
+        <span>{{ course.teacher }}</span>
+        <span>{{ course.get_category_name() }}</span>
+    </div>
+</div>
+<div class="comments">
+    {% for comment in course.get_comments() %}
+        <div class="comment-rows">
+            <div class="comment-user">
+                <p>{{ comment.author}}</p>
+            </div>
+            <div class="comment-content">
+                <p>{{ comment.comment }}</p>
+            </div>
+        </div>
+    {% end %}
+</div>
+<div class="add-comment" id="comments">
+    <form class="js-detail-comment-form" action="" data-course="{{ course.cid }}" >
+        {% raw xsrf_form_html() %}
+        <div class="ui-form-item ui-border-b">
+            <label for="#">
+                你的名字
+            </label>
+            <input type="text" placeholder="如需匿名，不填" name="author1" id="author1">
+            <a href="#" class="ui-icon-close">
+            </a>
+        </div>
+        <div class="ui-form-item ui-border-b">
+            <label for="#">
+                评分
+            </label>
+            <input type="hidden" placeholder="评分" id="score">
+            <div class="star">
+                <div class="jump-to-score"></div>
+                <span class="score-comment">
+                    <i class="demo-icon icon-star-empty"></i>
+                    <i class="demo-icon icon-star-empty"></i>
+                    <i class="demo-icon icon-star-empty"></i>
+                    <i class="demo-icon icon-star-empty"></i>
+                    <i class="demo-icon icon-star-empty"></i>
+                </span>
+            </div>
+        </div>
+        <div class="ui-form-item ui-border-b add-height">
+            <label for="#">
+                评论
+            </label>
+            <textarea rows="6" placeholder="必填" name="content" id="content"></textarea>
+            <a href="#" class="ui-icon-close">
+            </a>
+        </div>
+
+        <div class="ui-btn-wrap">
+            <button class="ui-btn-lg ui-btn-primary" type="submit">
+                <span class="confirm">确定</span>
+                <img src="{{ static_url("dist/image/loading.gif")}}" class="loading hide">
+            </button>
+        </div>
+    </form>
+</div>
+{% end %}

@@ -1,0 +1,17 @@
+<div class="card" data-category="{{ item.category }}">
+    <a href="/{{ item.get_category_name() }}/{{ item.teacher }}/{{ item.name }}">
+        <div class="row">
+            <h2>{{ item.name }}</h2>
+            {% module Rating(item, clickable) %}
+        </div>
+        <div class="row">
+            <div class="subtitle">
+                <span> {{ item.teacher }} </span>
+                <span> {{ item.get_category_name() }} </span>
+            </div>
+            <span>
+                {{ len(item.get_comments()) }} 条评论
+            </span>
+        </div>
+    </a>
+</div>

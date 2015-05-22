@@ -1,0 +1,39 @@
+{% extends "mobileBase.html" %}
+
+{% block body %}
+<div class="ui-searchbar-wrap">
+    <div class="ui-searchbar">
+        <i class="ui-icon-search"></i>
+        <div class="ui-searchbar-text">搜索课程 / 教师</div>
+        <div class="ui-searchbar-input">
+            <form action="/search" class="search-form js-index-search-form" autocomplete="off">
+                {% raw xsrf_form_html() %}
+                <input value="" type="text" placeholder="搜索课程 / 教师" autocapitalize="off" name="keyword" required></div>
+            </form>
+        <i class="ui-icon-close"></i>
+    </div>
+     <button class="ui-searchbar-cancel">取消</button>
+</div>
+
+<ul class="ui-list ui-list-link ui-border-tb animated-list">
+    {% for item in results %}
+        <li onclick="window.location='/{{ item.get_category_name() }}/{{ item.teacher }}/{{ item.name }}?keyword={{keyword}}'">
+            <div class="ui-list-thumb ui-avatar-s" style="background-color: {{ item.get_color() }}">
+               <span>{{ item.first_charac }}</span>
+            </div>
+            <div class="ui-list-info ui-border-t">
+                <h4 class="ui-nowrap">{{ item.name }}</h4>
+                <p class="ui-nowrap">
+                    <span class="result-star" data-rate="{{ item.get_rating() }}">
+                        <i class="demo-icon icon-star"></i>
+                        <i class="demo-icon icon-star"></i>
+                        <i class="demo-icon icon-star-empty"></i>
+                        <i class="demo-icon icon-star-empty"></i>
+                        <i class="demo-icon icon-star-empty"></i>
+                    </span> 
+                {{ item.teacher }} {{ item.get_category_name() }}</p>
+            </div>
+        </li>
+    {% end %}
+</ul>
+{% end %}
